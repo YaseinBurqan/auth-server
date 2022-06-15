@@ -1,7 +1,7 @@
 "use strict";
 const express = require("express");
 const allUsersRouter = express.Router();
-const { Users } = require("../module/Users");
+const { Users } = require("../models/users-models");
 const bearer = require("../middleware/bearer");
 const logger = require("../middleware/logger");
 

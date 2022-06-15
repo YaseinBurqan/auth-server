@@ -13,9 +13,8 @@ const errorHandler = require("./error-handlers/500");
 const signInRoutes = require("./routes/signIn");
 const signUpRoutes = require("./routes/signUp");
 
-const secretRouter = require("./routes/secretRouter");
-const allUsersRouter = require("./routes/allUsersRouter");
-
+const secretRouter = require("./routes/secret");
+const allUsersRouter = require("./routes/allUsers");
 
 const logger = require("./middleware/logger");
 
