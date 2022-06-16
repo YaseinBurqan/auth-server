@@ -51,4 +51,20 @@ users.authenticateBearer = async function (token) {
     throw new Error("Invalid Token");
   }
 };
+// users.authenticateBasic = async function (username, password) {
+//   const user = await users.findOne({ where: { username: username } });
+//   // console.log({user});
+//   let x = user.password;
+//   console.log({ x });
+//   const valid = await bcrypt.compare(password, user.password);
+//   console.log({ valid });
+//   if (valid) {
+//     let newToken = jwt.sign({ username: user.username }, SECRET);
+//     console.log("************************", newToken);
+//     user.token = newToken;
+//     return user;
+//   } else {
+//     throw new Error("Invalid user");
+//   }
+// };
 module.exports = users;
