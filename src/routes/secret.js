@@ -2,7 +2,7 @@
 const express = require("express");
 const secretRouter = express.Router();
 const bearer = require("../middleware/bearer");
-const logger = require("../middleware/logger");
+// const logger = require("../middleware/logger");
 
 secretRouter.get("/secret", bearer, (req, res) => {
   res.status(200).json({
@@ -11,6 +11,6 @@ secretRouter.get("/secret", bearer, (req, res) => {
   });
 });
 
-secretRouter.use(logger);
+// secretRouter.use(logger);
 
 module.exports = secretRouter;

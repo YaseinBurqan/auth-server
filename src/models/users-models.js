@@ -1,8 +1,6 @@
 "use strict";
+
 require("dotenv").config();
-
-// const { sequelize, DataTypes } = require("./index");
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.API_SECRET || "any word";
@@ -30,41 +28,22 @@ users.authenticateBasic = async function (username, password) {
   const user = await users.findOne({ where: { username: username } });
   const valid = await bcrypt.compare(password, user.password);
   if (valid) {
-    let newToken = jwt.sign({ username: user.username }, SECRET);
-    // console.log('************************', newToken);
+    let newToken = jwt.sign({ username: user.username }, SECRET, { expiresIn: "15 min" });
     user.token = newToken;
     return user;
   } else {
     throw new Error("Invalid user");
   }
 };
+
 users.authenticateBearer = async function (token) {
   const parsedToken = jwt.verify(token, SECRET);
   console.log("parsedToken >>>>>>>>>>>>>>>>>>", parsedToken);
-  let x = parsedToken.username;
-  console.log(x);
   const user = await users.findOne({ where: { username: parsedToken.username } });
-  console.log(user.username);
   if (user.username) {
     return user;
   } else {
     throw new Error("Invalid Token");
   }
 };
-// users.authenticateBasic = async function (username, password) {
-//   const user = await users.findOne({ where: { username: username } });
-//   // console.log({user});
-//   let x = user.password;
-//   console.log({ x });
-//   const valid = await bcrypt.compare(password, user.password);
-//   console.log({ valid });
-//   if (valid) {
-//     let newToken = jwt.sign({ username: user.username }, SECRET);
-//     console.log("************************", newToken);
-//     user.token = newToken;
-//     return user;
-//   } else {
-//     throw new Error("Invalid user");
-//   }
-// };
 module.exports = users;
