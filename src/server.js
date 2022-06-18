@@ -14,19 +14,19 @@ const signInRoutes = require("./routes/signIn");
 const signUpRoutes = require("./routes/signUp");
 
 const secretRouter = require("./routes/secret");
-const allUsersRouter = require("./routes/allUsers");
+const getUsersRouter = require("./routes/getUsers");
 
 const logger = require("./middleware/logger");
 
 app.get("/", (req, res) => {
-  res.status(200).send("server is working");
+  res.status(200).send("server is working on home page");
 });
 
 app.use(signInRoutes);
 app.use(signUpRoutes);
 
 app.use(secretRouter);
-app.use(allUsersRouter);
+app.use(getUsersRouter);
 
 app.use("*", notFoundHandler);
 app.use(errorHandler);

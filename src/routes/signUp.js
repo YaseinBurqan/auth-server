@@ -3,7 +3,7 @@
 const base64 = require("base-64");
 const bcrypt = require("bcrypt");
 const express = require("express");
-const { users } = require("../models/index");
+const { users } = require("../models/index-models");
 const signUp = express.Router();
 
 signUp.post("/signup", signUpHandler);

@@ -3,7 +3,7 @@ require("dotenv").config();
 
 let PORT = process.env.PORT || 5000;
 const server = require("./src/server");
-const { db } = require("./src/models/index");
+const { db } = require("./src/models/index-models");
 
 db.sync()
   .then(() => {
