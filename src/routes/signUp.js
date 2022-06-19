@@ -1,20 +1,32 @@
 "use strict";
 
-const base64 = require("base-64");
-const bcrypt = require("bcrypt");
+// const base64 = require("base-64");
+// const bcrypt = require("bcrypt");
 const express = require("express");
-const { users } = require("../models/index-models");
+const {
+  users
+} = require("../models/index-models");
 const signUp = express.Router();
 
-signUp.post("/signup", signUpHandler);
+signUp.post("/signup", handleSignup);
 
-async function signUpHandler(req, res) {
+async function handleSignup(req, res, next) {
   try {
-    req.body.password = await bcrypt.hash(req.body.password, 10);
-    const record = await users.create(req.body);
-    res.status(200).json(record);
+    users.beforeCreate(req.body.password).then(async (hashedPass) => {
+        let userRecord = await users.create({
+          username: req.body.username,
+          password: hashedPass
+        });
+        const output = {
+          user: userRecord,
+          token: userRecord.token
+        };
+        res.status(201).json(userRecord);
+      })
+      .catch((e) => {})
   } catch (e) {
-    res.status(403).send("Error Creating User");
+    console.error(e);
+    next(e);
   }
 }
 
