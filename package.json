@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
-    "watch": "nodemon app.js",
+    "start": "NODE_ENV=production node index.js",
+    "watch": "nodemon index.js",
     "init:config": "sequelize init:config",
     "db:create": "sequelize db:create",
     "test-watch": "NODE_ENV=test jest --watchAll",
     "test": "NODE_ENV=test jest",
-    "dev": "NODE_ENV=development nodemon app.js"
+    "dev": "NODE_ENV=development nodemon index.js"
   },
   "repository": {
     "type": "git",
