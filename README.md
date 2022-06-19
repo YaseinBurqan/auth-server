@@ -6,4 +6,5 @@
 
 # It is done and work as well but on heroku it dosnt
 
-![](./Screenshot%202022-06-19%20014746.png)
+![](./assets/Screenshot%202022-06-19%20014746.png)
+![](./assets/UML.jpg)
